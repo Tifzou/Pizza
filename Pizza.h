@@ -18,7 +18,6 @@ public:
     // methods
 public:
     Pizza(string filename);
-	
 };
 
 #endif // PIZZA_H

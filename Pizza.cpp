@@ -11,7 +11,6 @@ Pizza::Pizza(string filename)
 	ofstream outputFile;
 	string line;
 	inputFile.open(filename);
-	outputFile.open("easyPizza.txt");
 	if(inputFile.is_open() && outputFile.is_open())
 	{
 		int i = 0; // line counter
