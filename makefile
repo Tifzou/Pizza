@@ -10,9 +10,9 @@ OBJ = Pizza.o main.o
 default: pizza.exe
 
 pizza.exe: $(OBJ)
-	$(CC) -c -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS)
 
-%.o: %.cpp
+%.o: %.cpp $(DEPS)
 	$(CC) -o $@ -c $< $(CFLAGS)
 	
 clean:
