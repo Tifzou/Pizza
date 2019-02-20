@@ -6,9 +6,9 @@ class Pizza
 {
     // attributes
 public:
-    int R; // nb of rows in the pizza
-    int C; // nb of columns in the pizza
-    int grid [R][C]; // pizza cells
+    static int R; // nb of rows in the pizza
+    static int C; // nb of columns in the pizza
+    int** grid; // pizza cells
     
     // methods
 public:
