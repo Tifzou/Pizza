@@ -9,8 +9,10 @@ class Pizza
 {
     // attributes
 public:
-    static int R; // nb of rows in the pizza
-    static int C; // nb of columns in the pizza
+    int R; // nb of rows in the pizza
+    int C; // nb of columns in the pizza
+    int L; // minimum ingredient per cell
+    int H; // max nb of cells per slice
     int** grid; // pizza cells
     
     // methods
