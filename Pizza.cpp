@@ -11,7 +11,7 @@ Pizza::Pizza(string filename)
 	ofstream outputFile;
 	string line;
 	inputFile.open(filename);
-	if(inputFile.is_open() && outputFile.is_open())
+	if(inputFile.is_open())
 	{
 		int i = 0; // line counter
 		while ( getline (inputFile, line) )
