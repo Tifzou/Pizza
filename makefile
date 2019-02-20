@@ -4,8 +4,8 @@ CC = g++
 CFLAGS = -Wall -Werror
 LDFLAGS =
 
-DEPS = Pizza.h Slice.h
-OBJ = Pizza.o Slice.o
+DEPS = Pizza.h
+OBJ = Pizza.o main.o
 
 default: pizza.exe
 

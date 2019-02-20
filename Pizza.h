@@ -1,6 +1,9 @@
 #ifndef PIZZA_H
 #define PIZZA_H
 
+#include <string>
+
+using namespace std;
 
 class Pizza
 {
@@ -12,7 +15,8 @@ public:
     
     // methods
 public:
-    Pizza();
+    Pizza(string filename);
+	
 };
 
 #endif // PIZZA_H
