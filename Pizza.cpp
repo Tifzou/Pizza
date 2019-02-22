@@ -2,12 +2,15 @@
 
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
 Pizza::Pizza(string filename)
 {
 	grid = NULL;
+	nbM = 0;
+	nbT = 0;
 	string line;
 	
 	ifstream inputFile;
@@ -50,17 +53,24 @@ Pizza::Pizza(string filename)
 	    			if(cell == "M")
 	    			{
 	    				grid[lineCount-1][col] = 0;
+	    				nbM++;
 	    			}
 	    			else // cell = "T"
 	    			{
 	    				grid[lineCount-1][col] = 1;
+	    				nbT++;
 	    			}
 	    		}
 	    		lineCount++;
 	    	}
 	    }
 	    inputFile.close();
+	    
+	    nbSlicesMax = min(nbM, nbT)/L;
+	    
 	    printPizza();
+	    
+	    printSlices();
 	}
 	else
 	{
@@ -75,6 +85,12 @@ Pizza::~Pizza()
 		delete [] grid[row];
 	}
 	delete [] grid;
+
+	for(int row = 0 ; row < R ; row++)
+	{
+		delete [] slices[row];
+	}
+	delete [] slices;
 }
 
 void Pizza::printPizza()
@@ -98,13 +114,16 @@ void Pizza::printSlices()
 	if(outputFile.is_open())
 	{
 		outputFile << nbSlices << endl;
+		cout << "nbSlices : " << nbSlices << endl;
 		for (int row = 0 ; row < R ; row++)
 		{
-			for(int col = 0 ; col < C ; col++)
+			for(int col = 0 ; col < 4 ; col++)
 			{
-				outputFile << slices[row][col];
+				outputFile << slices[row][col] << " ";
+				//cout << slices[row][col] << " ";
 			}
 			outputFile << endl;
+			cout << endl;
 		}
 		outputFile.close();
 	}
