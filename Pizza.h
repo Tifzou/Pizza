@@ -7,20 +7,25 @@ using namespace std;
 
 class Pizza
 {
-    // attributes
-public:
+/* attributes*/
+private:
     int R; // nb of rows in the pizza
     int C; // nb of columns in the pizza
     int L; // minimum ingredient per cell
     int H; // max nb of cells per slice
     int** grid; // pizza cells 0 if mushroom (M) and 1 if tomato (T)
+    int nbSlices;
+    int** slices;
     
-    // methods
+/*methods*/
 public:
     Pizza(string filename);
     ~Pizza();
 
     void printPizza();
+
+private:
+	void printSlices();
 };
 
 #endif // PIZZA_H

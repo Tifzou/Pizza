@@ -79,6 +79,7 @@ Pizza::~Pizza()
 
 void Pizza::printPizza()
 {
+	cout << "Pizza : " << endl;
 	for(int row = 0 ; row < R ; row++)
 	{
 		for(int col = 0 ; col < C ; col++)
@@ -86,5 +87,25 @@ void Pizza::printPizza()
 			cout << grid[row][col];
 		}
 		cout << endl;
+	}
+}
+
+void Pizza::printSlices()
+{
+	ofstream outputFile;
+	outputFile.open("slices.out");
+	
+	if(outputFile.is_open())
+	{
+		outputFile << nbSlices << endl;
+		for (int row = 0 ; row < R ; row++)
+		{
+			for(int col = 0 ; col < C ; col++)
+			{
+				outputFile << slices[row][col];
+			}
+			outputFile << endl;
+		}
+		outputFile.close();
 	}
 }
