@@ -12,7 +12,7 @@ Pizza::Pizza(string filename)
 	
 	ifstream inputFile;
 	inputFile.open(filename);
-	
+
 	if(inputFile.is_open())
 	{
 		int lineCount = 0; // line counter
