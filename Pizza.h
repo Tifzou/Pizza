@@ -14,6 +14,9 @@ private:
     int L; // minimum ingredient per cell
     int H; // max nb of cells per slice
     int** grid; // pizza cells 0 if mushroom (M) and 1 if tomato (T)
+    
+    int nbM; // nb Mushrooms
+    int nbT; // nb Tomatoes
     int nbSlices;
     int** slices;
     
