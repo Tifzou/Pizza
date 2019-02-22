@@ -25,6 +25,7 @@ public:
     void printPizza();
 
 private:
+	void cutSlices();
 	void printSlices();
 };
 

@@ -109,3 +109,8 @@ void Pizza::printSlices()
 		outputFile.close();
 	}
 }
+
+void Pizza::cutSlices()
+{
+	
+}
