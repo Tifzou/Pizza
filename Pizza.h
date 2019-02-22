@@ -18,6 +18,7 @@ private:
     int nbM; // nb Mushrooms
     int nbT; // nb Tomatoes
     int nbSlices;
+    int nbSlicesMax;
     int** slices;
     
 /*methods*/

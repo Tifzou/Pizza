@@ -66,7 +66,7 @@ Pizza::Pizza(string filename)
 	    }
 	    inputFile.close();
 	    
-	    nbSlices = min(nbM, nbT)/L;
+	    nbSlicesMax = min(nbM, nbT)/L;
 	    
 	    printPizza();
 	    
