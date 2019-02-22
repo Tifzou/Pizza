@@ -48,3 +48,8 @@ Pizza::Pizza(string filename)
 		cout << "Couldn't read " << filename << endl;
 	}
 }
+
+void Pizza::slices()
+{
+
+}

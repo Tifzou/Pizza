@@ -18,6 +18,7 @@ public:
     // methods
 public:
     Pizza(string filename);
+	void slices();
 };
 
 #endif // PIZZA_H
