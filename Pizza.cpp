@@ -7,20 +7,23 @@ using namespace std;
 
 Pizza::Pizza(string filename)
 {
-	ifstream inputFile;
-	ofstream outputFile;
+	grid = NULL;
 	string line;
+	
+	ifstream inputFile;
 	inputFile.open(filename);
-	if(inputFile.is_open() && outputFile.is_open())
+
+	if(inputFile.is_open())
 	{
-		int i = 0; // line counter
+		int lineCount = 0; // line counter
 		while ( getline (inputFile, line) )
 	    {
-	    	if (i==0)
+	    	if (lineCount==0)
 	    	{
 	    		string::size_type spacePosition = line.find(' ');
 	    		string rowNb = line.substr(0, spacePosition);
 	    		R = stoi(rowNb);
+	    		grid = new int*[R];
 	    		
 	    		string::size_type newSpacePosition = line.find(' ', spacePosition);
 	    		string colNb = line.substr(spacePosition+1, newSpacePosition + 1 - spacePosition );
@@ -35,13 +38,29 @@ Pizza::Pizza(string filename)
 	    		spacePosition = newSpacePosition+2;
 	    		string maxiCells = line.substr(spacePosition, lineLength - spacePosition);
 	    		H = stoi(maxiCells);
-	    		i++;
+	    		lineCount++;
 	    	}
-	    	cout << line << '\n';
-			outputFile << line << '\n';
+	    	else
+	    	{
+	    		grid[lineCount-1] = new int[C];
+	    		for(int col = 0 ; col < C ; col++)
+	    		{
+	    			
+	    			string cell = line.substr(col, 1);
+	    			if(cell == "M")
+	    			{
+	    				grid[lineCount-1][col] = 0;
+	    			}
+	    			else // cell = "T"
+	    			{
+	    				grid[lineCount-1][col] = 1;
+	    			}
+	    		}
+	    		lineCount++;
+	    	}
 	    }
 	    inputFile.close();
-	    outputFile.close();
+	    printPizza();
 	}
 	else
 	{
@@ -49,7 +68,44 @@ Pizza::Pizza(string filename)
 	}
 }
 
-void Pizza::slices()
+Pizza::~Pizza()
 {
+	for(int row = 0 ; row < R ; row++)
+	{
+		delete [] grid[row];
+	}
+	delete [] grid;
+}
 
+void Pizza::printPizza()
+{
+	cout << "Pizza : " << endl;
+	for(int row = 0 ; row < R ; row++)
+	{
+		for(int col = 0 ; col < C ; col++)
+		{
+			cout << grid[row][col];
+		}
+		cout << endl;
+	}
+}
+
+void Pizza::printSlices()
+{
+	ofstream outputFile;
+	outputFile.open("slices.out");
+	
+	if(outputFile.is_open())
+	{
+		outputFile << nbSlices << endl;
+		for (int row = 0 ; row < R ; row++)
+		{
+			for(int col = 0 ; col < C ; col++)
+			{
+				outputFile << slices[row][col];
+			}
+			outputFile << endl;
+		}
+		outputFile.close();
+	}
 }
