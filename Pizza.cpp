@@ -112,5 +112,14 @@ void Pizza::printSlices()
 
 void Pizza::cutSlices()
 {
-	
+	nbSlices = 0; // TODO need to change to "real" value
+	slices = new int*[nbSlices];
+	for(int row = 0 ; row < nbSlices ; row++)
+	{
+		slices[row] = new int[4];
+		for(int col = 0 ; col < 4 ; col ++)
+		{
+			// TODO remplir les coordonnees des parts
+		}
+	}
 }
