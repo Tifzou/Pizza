@@ -2,6 +2,7 @@
 #define PIZZA_H
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
     int nbSlices;
     int nbSlicesMax;
     int** slices;
+    vector<vector<int>> vector_slices;
     
 /*methods*/
 public:

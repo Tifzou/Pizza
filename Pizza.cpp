@@ -70,6 +70,7 @@ Pizza::Pizza(string filename)
 	    
 	    printPizza();
 	    
+	    cutSlices();
 	    printSlices();
 	}
 	else
@@ -114,32 +115,84 @@ void Pizza::printSlices()
 	if(outputFile.is_open())
 	{
 		outputFile << nbSlices << endl;
-		cout << "nbSlices : " << nbSlices << endl;
-		for (int row = 0 ; row < R ; row++)
+		//cout << "nbSlices : " << nbSlices << endl;
+		//for (int row = 0 ; row < R ; row++)
+		for (vector<vector<int>>::iterator it = vector_slices.begin() ; it != vector_slices.end() ; ++it)
 		{
-			for(int col = 0 ; col < 4 ; col++)
+			for(vector<int>::iterator it2 = it->begin() ; it2 != it->end() ; ++it2)
 			{
-				outputFile << slices[row][col] << " ";
+				outputFile << *it2 << " ";
+				//cout << *it2 << " ";
+				//outputFile << slices[row][col] << " ";
 				//cout << slices[row][col] << " ";
 			}
 			outputFile << endl;
-			cout << endl;
+			//cout << endl;
 		}
 		outputFile.close();
 	}
 }
 
-void Pizza::cutSlices(int length, int height, int row, int column)
+void Pizza::cutSlices()
 {
-	for (int i = row; i < row +length; i++)
+	for (int row = 0 ; row < R ; row++)
 	{
-		for (int j = column; j < column + height; j++)
-		{
+		int t_count = 0;
+		int m_count = 0;
+		int slice_begin = 0;
+		int slice_end = 0;
 
+		while(slice_end < C)
+		{
+			if(grid[row][slice_end] == 0) // M
+			{
+				m_count++;
+				//cout << m_count <<"th mushroom, in coord " << row << " " << slice_end << endl;
+			}
+			else if(grid[row][slice_end] == 1) // T
+			{
+				t_count++;
+				//cout << t_count <<"th tomato in coord " << row << " " << slice_end << endl;
+
+			}
+			slice_end++;
+			//cout << "slice_end ++ ==> " << slice_end << endl;
+
+			if(slice_end - slice_begin > H)
+			{
+				//cout << "slice too big" << endl;
+				if(grid[row][slice_begin] == 0) // M
+				{
+					m_count--;
+					//cout << "take away 1 mushroom ==> " << m_count << endl;
+				}
+				else if(grid[row][slice_begin] == 1) // T
+				{
+					t_count--;
+					//cout << "take away 1 tomato ==> " << t_count << endl;
+				}
+				slice_begin++;
+				//cout << "slice_begin ++ ==> " << slice_begin << endl;
+			}
+			if(slice_end - slice_begin <= H
+				&& m_count >= L
+				&& t_count >= L)
+			{
+				//cout << "slice is valid!" << endl;
+				vector<int> sliceDetails;
+				sliceDetails.push_back(row);
+				sliceDetails.push_back(slice_begin);
+				sliceDetails.push_back(row);
+				sliceDetails.push_back(slice_end-1);
+
+				vector_slices.push_back(sliceDetails);
+				
+				nbSlices++;
+				
+				slice_begin = slice_end;
+				t_count = 0;
+				m_count = 0;
+			}
 		}
-		nbSlices++;
 	}
 }
-	
-	
-	
